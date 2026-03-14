@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marjarry's Nutrizone — Real Food. Real Nutrition. Real Results.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark-green: #1E3A2F;
+    --mid-green: #2D5A3D;
+    --light-green: #4A7C59;
+    --gold: #C4933F;
+    --warm-white: #FDFAF4;
+    --text-dark: #1A1A14;
+    --text-mid: #4A4A3A;
+    --teal: #1A5C6B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(253,250,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,147,63,0.2);
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--dark-green);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dark-green); }
+  .nav-cta {
+    background: var(--dark-green); color: var(--cream) !important;
+    padding: 10px 22px; border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--mid-green) !important; color: var(--cream) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--dark-green); display: block; transition: 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark-green);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5%;
+    position: relative; overflow: hidden;
+    padding-top: 80px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 55%; height: 100%;
+    background: var(--mid-green);
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .hero-content { position: relative; z-index: 2; padding-right: 40px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(196,147,63,0.4);
+    padding: 6px 14px; border-radius: 2px; margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream); margin-bottom: 24px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-size: 1rem; font-weight: 300; line-height: 1.7;
+    color: rgba(245,240,232,0.75); margin-bottom: 40px; max-width: 440px;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--dark-green);
+    padding: 14px 32px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; border-radius: 2px;
+    text-decoration: none; display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: #d4a34f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,147,63,0.3); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    padding: 14px 32px; border: 1px solid rgba(245,240,232,0.4); cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; border-radius: 2px;
+    text-decoration: none; display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--cream); background: rgba(245,240,232,0.08); }
+  .hero-image-side { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
+  .hero-badge-stack { display: flex; flex-direction: column; gap: 16px; }
+  .hero-badge {
+    background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.12);
+    backdrop-filter: blur(8px); border-radius: 4px;
+    padding: 20px 28px; display: flex; align-items: center; gap: 16px;
+    animation: floatUp 0.8s ease both;
+  }
+  .hero-badge:nth-child(2) { animation-delay: 0.15s; margin-left: 32px; }
+  .hero-badge:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes floatUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .badge-icon { font-size: 2rem; }
+  .badge-text { color: var(--cream); }
+  .badge-text strong { display: block; font-size: 0.9rem; font-weight: 600; }
+  .badge-text span { font-size: 0.75rem; color: rgba(245,240,232,0.6); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(245,240,232,0.4); font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .scroll-line { width: 1px; height: 40px; background: rgba(245,240,232,0.2); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+  /* SECTION COMMONS */
+  section { padding: 96px 5%; }
+  .section-tag {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2;
+    color: var(--dark-green); margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--mid-green); }
+  .divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 20px 0 32px;
+  }
+
+  /* ABOUT */
+  .about { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-visual {
+    position: relative;
+    background: var(--dark-green); border-radius: 4px;
+    padding: 48px 40px; min-height: 420px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute; top: -30px; right: -30px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(196,147,63,0.08);
+  }
+  .about-visual::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: rgba(74,124,89,0.12);
+  }
+  .founder-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-style: italic; font-weight: 300;
+    color: var(--cream); line-height: 1.5; position: relative; z-index: 1;
+    margin-bottom: 24px;
+  }
+  .founder-credit {
+    color: var(--gold); font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+  .stat-card {
+    border: 1px solid rgba(30,58,47,0.15); padding: 24px 20px; border-radius: 2px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stat-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 600; color: var(--dark-green); line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--text-mid); margin-top: 6px; line-height: 1.4; }
+  .about-text p { font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 16px; }
+  .commitment-list { list-style: none; margin-top: 24px; }
+  .commitment-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.9rem; color: var(--text-mid); padding: 10px 0;
+    border-bottom: 1px solid rgba(30,58,47,0.08);
+  }
+  .commitment-list li:last-child { border-bottom: none; }
+  .check { color: var(--mid-green); font-size: 1rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+  /* PRODUCTS */
+  .products { background: var(--warm-white); }
+  .products-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+  .products-header .divider { margin: 20px auto 32px; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .product-card {
+    background: var(--warm-white); border: 1px solid rgba(30,58,47,0.1);
+    border-radius: 4px; overflow: hidden;
+    transition: all 0.3s ease; cursor: pointer;
+    position: relative;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(30,58,47,0.12); border-color: transparent; }
+  .product-card:hover .product-overlay { opacity: 1; }
+  .product-img-wrap {
+    height: 200px;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative; overflow: hidden;
+  }
+  .product-overlay {
+    position: absolute; inset: 0;
+    background: rgba(30,58,47,0.88);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .overlay-btn {
+    background: var(--gold); color: var(--dark-green);
+    border: none; cursor: pointer; padding: 12px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; border-radius: 2px;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s;
+  }
+  .overlay-btn:hover { background: #d4a34f; }
+  .product-body { padding: 24px; }
+  .product-category {
+    font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 8px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--dark-green);
+    margin-bottom: 10px;
+  }
+  .product-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 16px; }
+  .product-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em;
+    padding: 4px 10px; border-radius: 20px;
+    background: rgba(30,58,47,0.06); color: var(--mid-green);
+    border: 1px solid rgba(30,58,47,0.1);
+  }
+
+  /* ORDER SECTION */
+  .order-section {
+    background: var(--dark-green);
+    text-align: center; padding: 80px 5%;
+    position: relative; overflow: hidden;
+  }
+  .order-section::before {
+    content: '';
+    position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(196,147,63,0.12), transparent 70%);
+  }
+  .order-section .section-title { color: var(--cream); position: relative; z-index: 1; }
+  .order-subtitle { font-size: 1rem; color: rgba(245,240,232,0.65); max-width: 500px; margin: 0 auto 48px; line-height: 1.7; position: relative; z-index: 1; }
+  .order-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn-whatsapp {
+    background: #25D366; color: white;
+    padding: 16px 36px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em;
+    border-radius: 2px; text-decoration: none; display: inline-flex;
+    align-items: center; gap: 10px;
+    transition: all 0.25s;
+  }
+  .btn-whatsapp:hover { background: #1fb956; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+  .btn-call {
+    background: transparent; color: var(--cream);
+    padding: 16px 36px; border: 1px solid rgba(245,240,232,0.3); cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em;
+    border-radius: 2px; text-decoration: none; display: inline-flex;
+    align-items: center; gap: 10px;
+    transition: all 0.25s;
+  }
+  .btn-call:hover { border-color: var(--cream); background: rgba(245,240,232,0.06); }
+
+  /* CONTACT */
+  .contact { background: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+  .contact-item { display: flex; gap: 20px; align-items: flex-start; }
+  .contact-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--dark-green); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .contact-detail strong { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-weight: 500; }
+  .contact-detail p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; }
+  .contact-detail a { color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+  .contact-detail a:hover { color: var(--dark-green); }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); font-weight: 500; }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 13px 16px;
+    border: 1px solid rgba(30,58,47,0.2); border-radius: 2px;
+    background: var(--warm-white); color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--dark-green); }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark); padding: 48px 5% 32px;
+    display: flex; flex-direction: column; gap: 32px;
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
+  .footer-brand { max-width: 280px; }
+  .footer-brand .nav-logo { font-size: 1.3rem; margin-bottom: 12px; display: block; color: var(--cream); }
+  .footer-brand p { font-size: 0.82rem; color: rgba(245,240,232,0.5); line-height: 1.7; }
+  .footer-links h4 {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 16px;
+  }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { text-decoration: none; color: rgba(245,240,232,0.5); font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-social { display: flex; gap: 12px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 2px;
+    background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: rgba(245,240,232,0.6);
+    font-size: 1rem; transition: all 0.2s;
+  }
+  .social-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--dark-green); }
+  .footer-bottom {
+    border-top: 1px solid rgba(245,240,232,0.06); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 0.78rem; color: rgba(245,240,232,0.3); }
+
+  /* FLOATING WA */
+  .float-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 99;
+    background: #25D366; color: white;
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: all 0.25s;
+    animation: waPulse 3s ease-in-out infinite;
+  }
+  .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
+  @keyframes waPulse { 0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 32px rgba(37,211,102,0.6); } }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 100px; right: 28px; z-index: 200;
+    background: var(--dark-green); color: var(--cream);
+    padding: 14px 20px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 500;
+    transform: translateY(20px); opacity: 0;
+    transition: all 0.3s; pointer-events: none;
+    border-left: 3px solid var(--gold);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding: 120px 5% 80px; min-height: auto; }
+    .hero::before { display: none; }
+    .hero-content { padding-right: 0; }
+    .hero-subtitle { margin: 0 auto 40px; }
+    .hero-buttons { justify-content: center; }
+    .hero-badge-stack { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+    .hero-badge { margin-left: 0 !important; }
+    .hero-image-side { margin-top: 40px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    nav .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Marjarry<span>'s Nutrizone</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#order" class="nav-cta">Order Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu(this)">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Est. by Dt. Ashwini Pusadkar · Pune, India</div>
+    <h1 class="hero-title">
+      Real Food.<br><em>Real Nutrition.</em><br>Real Results.
+    </h1>
+    <p class="hero-subtitle">100% organic, preservative-free superfoods crafted from India's finest ingredients — formulated by a dietician with 25+ years of experience.</p>
+    <div class="hero-buttons">
+      <a href="#order" class="btn-primary">Order Now</a>
+      <a href="#products" class="btn-outline">Explore Products</a>
+    </div>
+  </div>
+  <div class="hero-image-side">
+    <div class="hero-badge-stack">
+      <div class="hero-badge">
+        <div class="badge-icon">🌿</div>
+        <div class="badge-text"><strong>100% Organic</strong><span>No synthetic pesticides or GMOs</span></div>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-icon">🚫</div>
+        <div class="badge-text"><strong>Zero Preservatives</strong><span>Freshness preserved naturally</span></div>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-icon">🇮🇳</div>
+        <div class="badge-text"><strong>Made in India</strong><span>Supporting local farmers</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="founder-quote">"Real food is the foundation of real health — every formulation reflects years of research and a genuine understanding of the body's needs."</div>
+      <div class="founder-credit">— Dt. Mrs. Ashwini Pusadkar, Founder</div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag">Our Story</span>
+      <h2 class="section-title">Rooted in <em>Nature,</em> Driven by Science</h2>
+      <div class="divider"></div>
+      <p>Founded by Ashwini Pusadkar, a qualified dietician with a postgraduate degree in Food Science & Nutrition from Nagpur University, Marjarry's Nutrizone has spent over 12 years developing and producing holistic food products.</p>
+      <p>Every product is sourced directly from trusted local farmers and crafted without any artificial additives — because we believe your food should work for you, not against you.</p>
+      <ul class="commitment-list">
+        <li><span class="check">✓</span> Certified organic, free from synthetic pesticides and GMOs</li>
+        <li><span class="check">✓</span> No preservatives — freshness preserved naturally</li>
+        <li><span class="check">✓</span> Proudly Made in India, supporting local artisans</li>
+        <li><span class="check">✓</span> Formulated by a qualified dietician with 25+ years experience</li>
+      </ul>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-num">25+</div><div class="stat-label">Years of nutrition expertise</div></div>
+        <div class="stat-card"><div class="stat-num">12+</div><div class="stat-label">Years making own products</div></div>
+        <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Product categories</div></div>
+        <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">Artificial preservatives</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <span class="section-tag">Our Catalogue</span>
+    <h2 class="section-title">What We <em>Offer</em></h2>
+    <div class="divider"></div>
+    <p style="color:var(--text-mid);font-size:0.92rem;line-height:1.7;">Nine thoughtfully crafted product lines — from detox teas to protein-rich grains — all 100% organic and free from preservatives.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img-wrap">🍵
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Herbal Tea</div>
+        <div class="product-name">Detox Tea</div>
+        <div class="product-desc">Organic green tea, ginger, turmeric, lemon peel & dandelion root — supports liver health and natural detoxification.</div>
+        <div class="product-tags"><span class="tag">Liver Health</span><span class="tag">Weight Loss</span><span class="tag">Antioxidant</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">🌿
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Herbal Tea</div>
+        <div class="product-name">Yellow Tea</div>
+        <div class="product-desc">Ginger, cinnamon, turmeric & black pepper — a powerful immunity booster with anti-inflammatory properties.</div>
+        <div class="product-tags"><span class="tag">Immunity</span><span class="tag">Anti-Inflammatory</span><span class="tag">Gut Health</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">💪
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Superfood</div>
+        <div class="product-name">Sattu</div>
+        <div class="product-desc">Roasted gram flour, wheat & barley — a protein-packed superfuel for sustained energy and blood sugar control.</div>
+        <div class="product-tags"><span class="tag">High Protein</span><span class="tag">Energy Fuel</span><span class="tag">Diabetic Friendly</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">🍝
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Meal</div>
+        <div class="product-name">Millet Pasta</div>
+        <div class="product-desc">Gluten-free pasta made from nutritious millets — light on the stomach and suitable for all age groups.</div>
+        <div class="product-tags"><span class="tag">Gluten-Free</span><span class="tag">No Preservatives</span><span class="tag">All Ages</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">🌾
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Superfood</div>
+        <div class="product-name">Nachani Satwa</div>
+        <div class="product-desc">100% pure ragi millet — rich in calcium, iron & protein, supporting bone health and ideal for gluten sensitivity.</div>
+        <div class="product-tags"><span class="tag">Gluten-Free</span><span class="tag">Bone Health</span><span class="tag">Rich in Iron</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">🍜
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Meal</div>
+        <div class="product-name">Millet Noodles</div>
+        <div class="product-desc">A healthy alternative to regular noodles — made from nutrient-rich millets, high in fibre, vitamins and minerals.</div>
+        <div class="product-tags"><span class="tag">Gluten-Free</span><span class="tag">100% Organic</span><span class="tag">High Fibre</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">🥞
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Breakfast</div>
+        <div class="product-name">Protein Dosa</div>
+        <div class="product-desc">High-protein grains and lentils transform traditional batter into a nutritious, gluten-free breakfast powerhouse.</div>
+        <div class="product-tags"><span class="tag">High Protein</span><span class="tag">Gluten-Free</span><span class="tag">Bone Strength</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">🍿
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Snacks</div>
+        <div class="product-name">Healthy Snacks</div>
+        <div class="product-desc">Non-fried, zero preservatives — Jowar sticks, Methi sticks, Corn kurkure & Soya sticks for guilt-free snacking.</div>
+        <div class="product-tags"><span class="tag">Non-Fried</span><span class="tag">Zero Preservatives</span><span class="tag">All Ages</span></div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">🫐
+        <div class="product-overlay"><a href="#order" class="overlay-btn">Order Now</a></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Breakfast</div>
+        <div class="product-name">Protein Pancakes</div>
+        <div class="product-desc">Organic millets, lentils & nuts blended for a fluffy, high-protein breakfast that fuels muscles and sustains energy.</div>
+        <div class="product-tags"><span class="tag">High Protein</span><span class="tag">Weight Loss</span><span class="tag">Bone Strength</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ORDER NOW -->
+<section class="order-section" id="order">
+  <span class="section-tag" style="color:var(--gold)">Ready to Begin?</span>
+  <h2 class="section-title" style="color:var(--cream)">Place Your <em style="color:var(--gold)">Order</em> Today</h2>
+  <p class="order-subtitle">Order via WhatsApp for the quickest response, or give us a call. We deliver across Pune and ship pan-India.</p>
+  <div class="order-buttons">
+    <a href="https://wa.me/918669286809?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20from%20Marjarry's%20Nutrizone%20catalogue." class="btn-whatsapp" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Order on WhatsApp
+    </a>
+    <a href="tel:+918669286809" class="btn-call">
+      📞 Call Us: +91 866 928 6809
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div>
+      <span class="section-tag">Get in Touch</span>
+      <h2 class="section-title">Visit Us or<br><em>Send a Message</em></h2>
+      <div class="divider"></div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <strong>Location</strong>
+            <p>Shop No. 110, Sai Vision A, Pimple Saudagar<br>Above NKGSB Bank, Pune – 411027</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail">
+            <strong>Phone</strong>
+            <p><a href="tel:+918669286809">+91 866 928 6809</a><br><a href="tel:+919767830575">+91 976 783 0575</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-detail">
+            <strong>Email</strong>
+            <p><a href="/cdn-cgi/l/email-protection#2944485b43485b5b505a475c5d5b405346474c694e44484045074a4644"><span class="__cf_email__" data-cfemail="402d21322a21323239332e353432293a2f2e2500272d21292c6e232f2d">[email&#160;protected]</span></a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-detail">
+            <strong>Social Media</strong>
+            <p>Instagram & Facebook:<br><a href="#">@Marjari.Nutrizone</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="background:var(--warm-white);padding:40px;border:1px solid rgba(30,58,47,0.1);border-radius:4px;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--dark-green);margin-bottom:6px;">Place an Order</h3>
+        <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:24px;">Select products, set quantities — total is calculated automatically.</p>
+        <div class="contact-form" id="orderForm">
+
+          <!-- NAME + PHONE -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name *</label>
+              <input type="text" id="f-name" placeholder="Full name" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+          </div>
+
+          <!-- PRODUCT CHECKBOXES -->
+          <div class="form-group">
+            <label>Select Products * <span style="font-size:0.7rem;color:var(--gold);font-weight:400;">(tick to add, set qty per item)</span></label>
+            <div id="product-list" style="display:flex;flex-direction:column;gap:0;border:1px solid rgba(30,58,47,0.15);border-radius:2px;overflow:hidden;margin-top:6px;"></div>
+          </div>
+
+          <!-- ORDER SUMMARY -->
+          <div id="order-summary" style="display:none;background:var(--cream);border:1px solid rgba(196,147,63,0.3);border-radius:2px;padding:16px 18px;">
+            <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;">Order Summary</div>
+            <div id="summary-lines" style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;"></div>
+            <div style="border-top:1px solid rgba(30,58,47,0.15);padding-top:10px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.82rem;font-weight:600;color:var(--dark-green);">Total Amount</span>
+              <span id="total-display" style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--dark-green);">₹0</span>
+            </div>
+          </div>
+
+          <!-- MESSAGE -->
+          <div class="form-group">
+            <label>Additional Message</label>
+            <textarea id="f-message" placeholder="Any special instructions or delivery notes…"></textarea>
+          </div>
+
+          <!-- STATUS -->
+          <div id="form-status" style="display:none;padding:12px 16px;border-radius:2px;font-size:0.85rem;font-weight:500;"></div>
+
+          <button class="btn-primary" id="submitBtn" onclick="submitOrderForm()" style="width:100%;padding:15px;font-size:0.9rem;">
+            <span id="btn-text">Submit Order</span>
+          </button>
+          <p style="font-size:0.72rem;color:var(--text-mid);text-align:center;margin-top:10px;opacity:0.7;">
+            After submitting, we'll reach out on WhatsApp to confirm your order.
+          </p>
+        </div>
+      </div>
+
+      <style>
+        /* Product row checkbox styles */
+        .prod-row {
+          display:flex; align-items:center; gap:12px;
+          padding:11px 14px;
+          border-bottom:1px solid rgba(30,58,47,0.08);
+          background:var(--warm-white);
+          transition:background 0.15s;
+        }
+        .prod-row:last-child { border-bottom:none; }
+        .prod-row.checked { background:rgba(30,58,47,0.04); }
+        .prod-row input[type=checkbox] { display:none; }
+        .prod-check-box {
+          width:20px; height:20px; border-radius:2px; flex-shrink:0;
+          border:2px solid rgba(30,58,47,0.25);
+          background:white; cursor:pointer;
+          display:flex; align-items:center; justify-content:center;
+          transition:all 0.15s;
+        }
+        .prod-row.checked .prod-check-box {
+          background:var(--dark-green); border-color:var(--dark-green);
+        }
+        .prod-check-box::after {
+          content:'✓'; color:white; font-size:0.75rem; font-weight:700;
+          opacity:0; transition:opacity 0.15s;
+        }
+        .prod-row.checked .prod-check-box::after { opacity:1; }
+        .prod-label { flex:1; cursor:pointer; }
+        .prod-label strong { display:block; font-size:0.88rem; color:var(--dark-green); font-weight:600; }
+        .prod-label span { font-size:0.75rem; color:var(--gold); font-weight:500; }
+        .prod-qty-wrap {
+          display:flex; align-items:center; gap:5px;
+          visibility:hidden;
+        }
+        .prod-row.checked .prod-qty-wrap { visibility:visible; }
+        .qty-btn {
+          width:28px; height:28px; border-radius:2px;
+          border:none; background:#2D5A3D; cursor:pointer;
+          font-size:1.1rem; font-weight:700; line-height:1;
+          display:flex; align-items:center; justify-content:center;
+          color:#ffffff; flex-shrink:0;
+          transition:background 0.15s;
+        }
+        .qty-btn:hover { background:#1E3A2F; }
+        .qty-display {
+          width:36px; height:28px;
+          display:flex; align-items:center; justify-content:center;
+          border:2px solid #2D5A3D; border-radius:2px;
+          background:#ffffff;
+          font-size:0.95rem; font-weight:700; color:#1E3A2F;
+          font-family:'DM Sans',sans-serif;
+        }
+      </style>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="nav-logo" style="font-size:1.2rem;">Marjarry<span style="color:var(--gold);font-style:italic;">'s Nutrizone</span></span>
+      <p>Real food. Real nutrition. Real results. Crafted with organic ingredients, made in India with love.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#order">Order Now</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#products">Detox Tea</a></li>
+        <li><a href="#products">Yellow Tea</a></li>
+        <li><a href="#products">Sattu</a></li>
+        <li><a href="#products">Protein Dosa</a></li>
+        <li><a href="#products">Healthy Snacks</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Connect</h4>
+      <div class="footer-social" style="margin-top:0;">
+        <a href="https://instagram.com/Marjari.Nutrizone" class="social-btn" target="_blank" title="Instagram">📷</a>
+        <a href="https://facebook.com/Marjari.Nutrizone" class="social-btn" target="_blank" title="Facebook">👍</a>
+        <a href="https://wa.me/918669286809" class="social-btn" target="_blank" title="WhatsApp">💬</a>
+      </div>
+      <p style="font-size:0.78rem;color:rgba(245,240,232,0.4);margin-top:16px;line-height:1.6;">Pimple Saudagar, Pune<br>Maharashtra, India – 411027</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Marjarry's Nutrizone. All rights reserved.</p>
+    <p>Designed with 💚 for holistic wellness</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a class="float-wa" href="https://wa.me/918669286809?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20from%20Marjarry's%20Nutrizone." target="_blank" title="Chat on WhatsApp">💬</a>
+
+<!-- Toast -->
+<div class="toast" id="toast">✅ Enquiry sent! We'll reach out shortly.</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ─── PRODUCT CATALOGUE (update prices here when ready) ───────────────────
+  // 💡 Replace the `price` values below with your actual prices
+  const PRODUCTS = [
+    { id: 'detox-tea',      name: 'Detox Tea',                    price: 250 },
+    { id: 'yellow-tea',     name: 'Yellow Tea',                   price: 220 },
+    { id: 'sattu',          name: 'Sattu',                        price: 180 },
+    { id: 'pasta',          name: 'Millet Pasta',                 price: 160 },
+    { id: 'nachani',        name: 'Nachani Satwa',                price: 200 },
+    { id: 'noodles',        name: 'Millet Noodles',               price: 150 },
+    { id: 'dosa',           name: 'Protein Dosa Mix',             price: 190 },
+    { id: 'jowar',          name: 'Snacks — Jowar Sticks',        price: 80  },
+    { id: 'methi',          name: 'Snacks — Methi Sticks',        price: 80  },
+    { id: 'corn',           name: 'Snacks — Corn Kurkure',        price: 80  },
+    { id: 'soya',           name: 'Snacks — Soya Sticks',         price: 80  },
+    { id: 'pancakes',       name: 'Protein Pancakes',             price: 210 },
+  ];
+
+  // ─── GOOGLE SHEETS URL ───────────────────────────────────────────────────
+  // ⬇️ Paste your Google Apps Script Web App URL below
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxkSjYHgKhCttwkUqObgwQZcwfk_5f_CfL2IiCCamnf4RsojyLAvAj50tQtk0AI0oMb9g/exec";
+
+  // ─── BUILD PRODUCT ROWS ──────────────────────────────────────────────────
+  function buildProductList() {
+    const container = document.getElementById('product-list');
+    PRODUCTS.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'prod-row';
+      row.id = 'row-' + p.id;
+      row.dataset.qty = '1';
+
+      const checkBox = document.createElement('div');
+      checkBox.className = 'prod-check-box';
+      checkBox.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleProduct(p.id);
+      });
+
+      const label = document.createElement('div');
+      label.className = 'prod-label';
+      label.innerHTML = '<strong>' + p.name + '</strong><span>&#8377;' + p.price + ' / pack <span style="color:#bbb;font-size:0.68rem;">(faux price)</span></span>';
+      label.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleProduct(p.id);
+      });
+
+      const qtyWrap = document.createElement('div');
+      qtyWrap.className = 'prod-qty-wrap';
+
+      const minusBtn = document.createElement('button');
+      minusBtn.type = 'button';
+      minusBtn.className = 'qty-btn';
+      minusBtn.textContent = '-';
+      minusBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        changeQty(p.id, -1);
+      });
+
+      const qtyDisplay = document.createElement('div');
+      qtyDisplay.className = 'qty-display';
+      qtyDisplay.id = 'qty-' + p.id;
+      qtyDisplay.textContent = '1';
+
+      const plusBtn = document.createElement('button');
+      plusBtn.type = 'button';
+      plusBtn.className = 'qty-btn';
+      plusBtn.textContent = '+';
+      plusBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        changeQty(p.id, 1);
+      });
+
+      qtyWrap.appendChild(minusBtn);
+      qtyWrap.appendChild(qtyDisplay);
+      qtyWrap.appendChild(plusBtn);
+
+      row.appendChild(checkBox);
+      row.appendChild(label);
+      row.appendChild(qtyWrap);
+      container.appendChild(row);
+    });
+  }
+
+  function toggleProduct(id) {
+    const row = document.getElementById('row-' + id);
+    row.classList.toggle('checked');
+    recalcTotal();
+  }
+
+  function changeQty(id, delta) {
+    const row = document.getElementById('row-' + id);
+    let v = parseInt(row.dataset.qty) || 1;
+    v = Math.max(1, Math.min(99, v + delta));
+    row.dataset.qty = v;
+    document.getElementById('qty-' + id).textContent = v;
+    recalcTotal();
+  }
+
+  function recalcTotal() {
+    const summaryBox  = document.getElementById('order-summary');
+    const linesEl     = document.getElementById('summary-lines');
+    const totalEl     = document.getElementById('total-display');
+    let total = 0;
+    const lines = [];
+
+    PRODUCTS.forEach(p => {
+      const row = document.getElementById('row-' + p.id);
+      if (row.classList.contains('checked')) {
+        const qty = parseInt(document.getElementById('row-' + p.id).dataset.qty) || 1;
+        const sub = qty * p.price;
+        total += sub;
+        lines.push({ name: p.name, qty, price: p.price, sub });
+      }
+    });
+
+    if (lines.length === 0) {
+      summaryBox.style.display = 'none';
+      return;
+    }
+
+    summaryBox.style.display = 'block';
+    linesEl.innerHTML = lines.map(l => `
+      <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-mid);">
+        <span>${l.name} × ${l.qty}</span>
+        <span style="font-weight:500;color:var(--dark-green);">₹${l.sub}</span>
+      </div>`).join('');
+    totalEl.textContent = '₹' + total.toLocaleString('en-IN');
+  }
+
+  // ─── SUBMIT TO GOOGLE SHEETS ─────────────────────────────────────────────
+  async function submitOrderForm() {
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const message = document.getElementById('f-message').value.trim();
+
+    // Collect selected products
+    const selected = [];
+    let totalAmount = 0;
+    let totalQty = 0;
+    PRODUCTS.forEach(p => {
+      const row = document.getElementById('row-' + p.id);
+      if (row.classList.contains('checked')) {
+        const qty = parseInt(document.getElementById('row-' + p.id).dataset.qty) || 1;
+        const sub = qty * p.price;
+        selected.push(`${p.name} x${qty} (₹${sub})`);
+        totalAmount += sub;
+        totalQty += qty;
+      }
+    });
+
+    if (!name || !phone) {
+      showStatus('⚠️ Please enter your Name and Phone number.', '#b45309', '#fffbeb'); return;
+    }
+    if (selected.length === 0) {
+      showStatus('⚠️ Please select at least one product.', '#b45309', '#fffbeb'); return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btn-text');
+    btn.disabled = true;
+    btnText.textContent = 'Submitting…';
+
+    const payload = {
+      name,
+      phone,
+      product: selected.join(' | '),
+      quantity: totalQty,
+      amount: totalAmount,
+      message
+    };
+
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      showStatus('✅ Order submitted! We\'ll confirm on WhatsApp shortly.', '#166534', '#f0fdf4');
+
+      // Reset form
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-phone').value = '';
+      document.getElementById('f-message').value = '';
+      document.querySelectorAll('.prod-row').forEach(r => {
+        r.classList.remove('checked');
+        r.dataset.qty = '1';
+        const disp = r.querySelector('.qty-display');
+        if (disp) disp.textContent = '1';
+      });
+      document.getElementById('order-summary').style.display = 'none';
+
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+
+    } catch(err) {
+      showStatus('❌ Something went wrong. Please order via WhatsApp or call us.', '#991b1b', '#fef2f2');
+    }
+
+    btnText.textContent = 'Submit Order';
+    btn.disabled = false;
+  }
+
+  function showStatus(msg, color, bg) {
+    const el = document.getElementById('form-status');
+    el.textContent = msg;
+    el.style.display = 'block';
+    el.style.color = color;
+    el.style.background = bg;
+    el.style.border = `1px solid ${color}33`;
+    setTimeout(() => { el.style.display = 'none'; }, 6000);
+  }
+
+  // ─── NAV HAMBURGER ───────────────────────────────────────────────────────
+  function toggleMenu(el) {
+    el.classList.toggle('open');
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '70px'; links.style.left = '0'; links.style.right = '0';
+      links.style.background = 'rgba(253,250,244,0.97)';
+      links.style.padding = '20px 5%';
+      links.style.borderBottom = '1px solid rgba(196,147,63,0.2)';
+      links.style.zIndex = '99';
+    }
+  }
+
+  // ─── SCROLL ANIMATIONS ───────────────────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.product-card, .stat-card, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+
+  // ─── INIT ────────────────────────────────────────────────────────────────
+  buildProductList();
+</script>
+</body>
+</html>
